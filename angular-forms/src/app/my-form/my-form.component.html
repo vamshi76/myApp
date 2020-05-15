@@ -1,0 +1,65 @@
+<div class="form-container">
+  <h3 class="header">Personal Details Form</h3>
+  <form class="example-form" (ngSubmit)="onSubmit()">
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput name="Name" placeholder="Name" [(ngModel)]="MyAppForm.name">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput name="Job Title" placeholder="Job Title" [(ngModel)]="MyAppForm.jobTitle">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input type="tel" name="phone" matInput placeholder="Phone" [(ngModel)]="MyAppForm.phone">
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="example-full-width">
+          <input matInput name="Company" placeholder="Company Name" [(ngModel)]="MyAppForm.company">
+        </mat-form-field>
+      </tr>
+    </table>
+
+    <button mat-raised-button color="primary" id="submitButton">Submit</button>
+
+  </form>
+
+
+  <table matSort [ngClass]="{'hide-table': (listOfFormItems.length == 0) , 'results-table': true }" mat-table
+    [dataSource]="dataSource" class="mat-elevation-z8" id="myTable">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let list"> {{list.name}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="jobTitle">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Job Title</th>
+      <td mat-cell *matCellDef="let list"> {{list.jobTitle}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Phone</th>
+      <td mat-cell *matCellDef="let list"> {{list.phone}}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="company">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Company</th>
+      <td mat-cell *matCellDef="let list"> {{list.company}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
